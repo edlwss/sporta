@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
-import ru.itche.backend.controller.document.payload.NewDocumentPayload;
+import ru.itche.backend.dto.document.NewDocumentPayload;
 import ru.itche.backend.entity.Document;
 import ru.itche.backend.service.document.DocumentService;
 
@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/cipinagora/api/doc/{userId:\\d+}")
+@RequestMapping("/sporta/api/doc/{userId:\\d+}")
 public class DocRestController {
 
     private final DocumentService docService;
@@ -35,7 +35,7 @@ public class DocRestController {
         Document doc = docService.createDoc(userId, payload);
 
         return ResponseEntity.created(uriBuilder
-                        .replacePath("/cipinagora/api/instructors/{id}")
+                        .replacePath("/sporta/api/instructors/{id}")
                         .build(Map.of("id", doc.getId())))
                 .body(doc);
     }

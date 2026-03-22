@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import ru.itche.backend.entity.auth.User;
 
 @Entity
 @AllArgsConstructor
@@ -21,17 +22,17 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name = "document")
+@Table(schema = "sporta", name = "documents")
 public class Document {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doc_generator")
-    @SequenceGenerator(name = "doc_generator", sequenceName = "doc_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "doc_generator", sequenceName = "sporta.doc_id_seq", allocationSize = 1)
     private Long id;
 
-    @JoinColumn(name = "instructor_id", nullable = false)
+    @JoinColumn(name = "user_doc_id", nullable = false)
     @ManyToOne
-    private Instructor instructor;
+    private User user;
 
     @Column(name = "doc", nullable = false)
     private String doc;

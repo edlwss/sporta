@@ -1,12 +1,13 @@
 package ru.itche.backend.controller.student;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import ru.itche.backend.controller.student.payload.GetStudentPayload;
+import ru.itche.backend.dto.student.GetStudentPayload;
 import ru.itche.backend.entity.Student;
-import ru.itche.backend.controller.student.payload.NewStudentPayload;
+import ru.itche.backend.dto.student.NewStudentPayload;
 import ru.itche.backend.service.student.StudentService;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/cipinagora/api/students")
+@RequestMapping("/sporta/api/students")
 public class StudentsRestController {
 
     private final StudentService studentService;
@@ -26,13 +27,14 @@ public class StudentsRestController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<Student> createStudent(@RequestBody NewStudentPayload payload,
-                                                 UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<Student> createStudent(
+            @Valid @RequestBody NewStudentPayload payload,
+            UriComponentsBuilder uriBuilder) {
 
         Student created = studentService.createStudent(payload);
 
         return ResponseEntity.created(uriBuilder
-                .replacePath("/cipinagora/api/students/{id}")
+                .replacePath("/sporta/api/students/{id}")
                 .build(Map.of("id", created.getId())))
                 .body(created);
     }

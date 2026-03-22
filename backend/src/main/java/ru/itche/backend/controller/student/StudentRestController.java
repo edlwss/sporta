@@ -1,52 +1,45 @@
 package ru.itche.backend.controller.student;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-import ru.itche.backend.controller.student.payload.GetStudentPayload;
+import ru.itche.backend.dto.student.GetStudentPayload;
 import ru.itche.backend.entity.Student;
+import ru.itche.backend.exceptions.StudentNotFoundException;
 import ru.itche.backend.service.student.StudentService;
-import ru.itche.backend.controller.student.payload.UpdateStudentPayload;
+import ru.itche.backend.dto.student.UpdateStudentPayload;
+import ru.itche.backend.service.user.UserService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/cipinagora/api/student/{id:\\d+}")
+@RequestMapping("/sporta/api/student/{id:\\d+}")
 public class StudentRestController {
 
     private final StudentService studentService;
-
-    @ModelAttribute("student")
-    public Student getStudent(@PathVariable("id") Long userId) {
-        return studentService.findStudent(userId)
-                .orElseThrow(() -> new StudentNotFoundException(userId));
-    }
+    private final UserService userService;
 
     @GetMapping
-    public GetStudentPayload findStudent(@ModelAttribute("student") Student student) {
+    public GetStudentPayload findStudent(@PathVariable("id") Long id) {
+        Student student = studentService.findStudent(id)
+                .orElseThrow(() -> new StudentNotFoundException(id));
+
         return GetStudentPayload.from(student);
     }
 
     @PatchMapping("/edit")
-    public ResponseEntity<?> updateStudent(@PathVariable("id") Long id,
-                                           @RequestBody UpdateStudentPayload payload) {
+    public ResponseEntity<Void> updateStudent(@PathVariable("id") Long id,
+                                              @Valid @RequestBody UpdateStudentPayload payload) {
 
         studentService.updateStudent(id, payload);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Void> deleteStudent(@PathVariable("id") Long studentId) {
-        studentService.deleteStudent(studentId);
+    public ResponseEntity<Void> deleteStudent(@PathVariable("id") Long userId) {
+        studentService.deleteStudent(userId);
         return ResponseEntity.noContent().build();
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    private static class StudentNotFoundException extends RuntimeException {
-        public StudentNotFoundException(Long id) {
-            super("Student with id " + id + " not found");
-        }
-    }
 }
 

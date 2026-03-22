@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.itche.backend.controller.user.payload.GetUserPayload;
-import ru.itche.backend.controller.user.payload.UpdateUserPasswordPayload;
-import ru.itche.backend.controller.user.payload.UpdateUserPayload;
+import ru.itche.backend.dto.user.GetUserPayload;
+import ru.itche.backend.dto.user.UpdateUserPasswordPayload;
+import ru.itche.backend.dto.user.UpdateUserPayload;
 import ru.itche.backend.service.user.UserService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/cipinagora/api/user/{id:\\d+}")
+@RequestMapping("/sporta/api/user/{id:\\d+}")
 public class UserController {
     private final UserService userService;
 

@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import ru.itche.backend.security.JwtRequestFilter;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -29,10 +30,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/cipinagora/api/student/**").hasRole("STUDENT")
+                                "/sporta/api/student/**").hasRole("STUDENT")
                         .requestMatchers(
-                                "/cipinagora/api/instructor/**").hasRole("INSTRUCTOR")
-                        .requestMatchers("/cipinagora/api/center/**").hasRole("SPORTSCENTER")
+                                "/sporta/api/instructor/**").hasRole("INSTRUCTOR")
+                        .requestMatchers("/sporta/api/center/**").hasRole("SPORTSCENTER")
                         .anyRequest().permitAll()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -14,6 +14,6 @@ public interface DocRepository extends CrudRepository<Document, Long> {
 
     @Query("SELECT d " +
             "FROM Document d " +
-            "WHERE d.instructor.id = :instructorId")
-    List<Document> findAllByInstructorId(@Param("instructorId") Long instructorId);
+            "WHERE d.user.id = :instructorId")
+    List<Document> findAllByUser_Id(Long userId);
 }

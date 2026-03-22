@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DiffGenerationConfig">
-    <option name="snapshotDbValue" value="96ad4a80-53e8-495a-a864-79c6546bd51d" />
+    <option name="snapshotDbValue" value="c6fffdeb-c2ce-4464-9809-7e2c728c504f" />
     <option name="sourceModelValue" value="backend:backend" />
-    <option name="targetDbValue" value="63cad8fb-7a2b-40e7-af69-6e8e2e8e6b24" />
+    <option name="targetDbValue" value="c6fffdeb-c2ce-4464-9809-7e2c728c504f__sporta_sporta" />
   </component>
 </project>

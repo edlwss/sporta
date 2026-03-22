@@ -4,16 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.itche.backend.controller.instructor.payload.GetInstructorPayload;
-import ru.itche.backend.controller.instructor.payload.UpdateInstructorPhotoPayload;
-import ru.itche.backend.controller.instructor.payload.UpdateInstructorSportsPayload;
+import ru.itche.backend.dto.instructor.GetInstructorPayload;
+import ru.itche.backend.dto.instructor.UpdateInstructorPhotoPayload;
+import ru.itche.backend.dto.instructor.UpdateInstructorSportsPayload;
 import ru.itche.backend.entity.Instructor;
 import ru.itche.backend.service.instructor.InstructorService;
-import ru.itche.backend.controller.instructor.payload.UpdateInstructorPersonalPayload;
+import ru.itche.backend.dto.instructor.UpdateInstructorPersonalPayload;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/cipinagora/api/instructor/{id:\\d+}")
+@RequestMapping("/sporta/api/instructor/{id:\\d+}")
 public class InstructorRestController {
 
     private final InstructorService instructorService;
